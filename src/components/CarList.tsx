@@ -1,19 +1,22 @@
-import React, { useMemo } from 'react';
+import React from 'react';
 import { useAppSelector } from '../hooks/store/useAppSelector.ts';
 import { useActions } from '../hooks/store/useActions.ts';
+import { createSelector } from '@reduxjs/toolkit';
+import { RootState } from '../store';
 
 type CarListProps = {};
 
-const CarList: React.FC<CarListProps> = () => {
+const filteredCarsSelector = createSelector([(state: RootState) => state], (state) => {
+  return {
+    name: state.form.name,
+    cars: state.cars.items.filter(c => c.name.toLowerCase().includes(state.cars.searchTerm.toLowerCase()))
+  }
+});
 
-  const { items, searchTerm } = useAppSelector(state => state.cars);
-  const name = useAppSelector(state => state.form.name);
+const CarList: React.FC<CarListProps> = () => {
+  const { name, cars} = useAppSelector(filteredCarsSelector);
 
   const { deleteCar } = useActions();
-
-  const cars = useMemo(() => {
-    return items.filter(c => c.name.toLowerCase().includes(searchTerm.toLowerCase()))
-  }, [items, searchTerm]);
 
   return (
     <div>
