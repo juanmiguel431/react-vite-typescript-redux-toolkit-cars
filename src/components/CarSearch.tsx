@@ -11,14 +11,18 @@ const CarSearch: React.FC<CarSearchProps> = () => {
   const { changeTerm } = useActions();
 
   return (
-    <form>
-      <label>Search</label>
-      <input
-        type="text"
-        value={searchTerm}
-        onChange={e => changeTerm(e.target.value)}
-      />
-    </form>
+    <div  className="list-header">
+      <h3 className="title is-3">My Cars</h3>
+      <div className="search field is-horizontal">
+        <label className="label">Search</label>
+        <input
+          className="input"
+          type="text"
+          value={searchTerm}
+          onChange={e => changeTerm(e.target.value)}
+        />
+      </div>
+    </div>
   );
 };
 

@@ -11,26 +11,45 @@ const CarForm: React.FC<CarFormProps> = () => {
   const { changeName, changeValue, addCar } = useActions();
 
   return (
-    <form>
-      <label>name</label>
-      <input
-        type="text"
-        value={name}
-        onChange={e => changeName(e.target.value)}
-      />
+    <div className="car-form panel">
+      <h4 className="subtitle is-3">Add Car</h4>
+      <form>
+        <div className="field-group">
+          <div className="field">
+            <label className="label">Name</label>
+            <input
+              className="input is-expanded"
+              type="text"
+              value={name}
+              onChange={e => changeName(e.target.value)}
+            />
+          </div>
+        </div>
 
-      <label>value</label>
-      <input
-        type="number"
-        value={value || ''}
-        onChange={e => changeValue(+e.target.value)}
-      />
+        <div className="field-group">
+          <div className="field">
+            <label className="label">Value</label>
+            <input
+              className="input is-expanded"
+              type="number"
+              value={value || ''}
+              onChange={e => changeValue(+e.target.value)}
+            />
+          </div>
+        </div>
 
-      <button onClick={e => {
-        e.preventDefault();
-        addCar({ name, value });
-      }}>Submit</button>
-    </form>
+        <div className="field">
+          <button
+            className="button is-link"
+            onClick={e => {
+              e.preventDefault();
+              addCar({ name, value });
+            }}>Submit
+          </button>
+        </div>
+
+      </form>
+    </div>
   );
 };
 

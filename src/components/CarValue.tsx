@@ -15,7 +15,9 @@ const CarValue: React.FC<CarValueProps> = () => {
   }, [items, searchTerm]);
 
   return (
-    <h1>Total value: {total}</h1>
+    <div className="car-value">
+      Total value: {total}
+    </div>
   );
 };
 
