@@ -7,6 +7,7 @@ type CarListProps = {};
 const CarList: React.FC<CarListProps> = () => {
 
   const { items, searchTerm } = useAppSelector(state => state.cars);
+  const name = useAppSelector(state => state.form.name);
 
   const { deleteCar } = useActions();
 
@@ -25,17 +26,24 @@ const CarList: React.FC<CarListProps> = () => {
         </tr>
         </thead>
         <tbody>
-        {cars.map(c => (
-          <tr key={c.id}>
-            <td>{c.name}</td>
-            <td>{c.value}</td>
-            <td>
-              <button onClick={() => deleteCar(c.id)}>
-                Delete
-              </button>
-            </td>
-          </tr>
-        ))}
+        {cars.map(c => {
+          const bold = !!name && c.name.toLowerCase().includes(name.toLowerCase());
+          return (
+            <tr key={c.id}>
+              <td>
+                <span style={{ fontWeight: bold ? 'bold' : '' }}>
+                  {c.name}
+                </span>
+              </td>
+              <td>{c.value}</td>
+              <td>
+                <button onClick={() => deleteCar(c.id)}>
+                  Delete
+                </button>
+              </td>
+            </tr>
+          );
+        })}
         </tbody>
       </table>
     </div>
