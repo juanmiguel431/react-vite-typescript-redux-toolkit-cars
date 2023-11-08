@@ -1,12 +1,12 @@
 import { configureStore } from '@reduxjs/toolkit';
-import carSlice from './reducers/carSlice.ts';
-import formSlice from './reducers/formSlice.ts';
+import carSlice from './slices/carSlice.ts';
+import formSlice from './slices/formSlice.ts';
 import * as actions from './actions.ts';
 
 export const store = configureStore({
   reducer: {
     cars: carSlice.reducer,
-    songs: formSlice.reducer,
+    form: formSlice.reducer,
   }
 });
 
