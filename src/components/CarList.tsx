@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useMemo } from 'react';
 import { useAppSelector } from '../hooks/store/useAppSelector.ts';
 import { useActions } from '../hooks/store/useActions.ts';
 
@@ -6,9 +6,13 @@ type CarListProps = {};
 
 const CarList: React.FC<CarListProps> = () => {
 
-  const cars = useAppSelector(state => state.cars.items);
+  const { items, searchTerm } = useAppSelector(state => state.cars);
 
   const { deleteCar } = useActions();
+
+  const cars = useMemo(() => {
+    return items.filter(c => c.name.includes(searchTerm))
+  }, [items, searchTerm]);
 
   return (
     <div>
