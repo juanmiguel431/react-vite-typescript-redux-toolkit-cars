@@ -12,7 +12,7 @@ const CarList: React.FC<CarListProps> = () => {
   const { deleteCar } = useActions();
 
   const cars = useMemo(() => {
-    return items.filter(c => c.name.includes(searchTerm))
+    return items.filter(c => c.name.toLowerCase().includes(searchTerm.toLowerCase()))
   }, [items, searchTerm]);
 
   return (
