@@ -6,12 +6,12 @@ import CarValue from './components/CarValue.tsx';
 function App() {
 
   return (
-    <>
+    <div>
       <CarForm/>
       <CarSearch/>
       <CarList/>
       <CarValue/>
-    </>
+    </div>
   )
 }
 
